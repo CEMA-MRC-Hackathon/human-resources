@@ -1,11 +1,11 @@
 # human-resources
 
-**Goal:**
+**Goal**
 
 Sustainable investment for health workforce
 (How to project recruitment model for healthcare workers based on evidence)
 
-**Objectives:**
+**Objectives**
 
 Evidence to understand:
 - Training
@@ -14,7 +14,7 @@ Evidence to understand:
 - Capacity building
 - Equipment
 
-**Data requirements:**
+**Data requirements**
 
 Health workforce data level 
 - Private vs public
