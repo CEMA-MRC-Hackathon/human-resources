@@ -59,9 +59,9 @@ Health workforce data
 - 47 counties
 - Densities, demographics
 - Distribution of different cadres
-Activity standards across different cadres (time per patient)
-Disease burden (by county, by cadre)
-Integrated Human Resource Information System (iHRIS)
+- Activity standards across different cadres (time per patient)
+- Disease burden (by county, by cadre)
+- Integrated Human Resource Information System (iHRIS)
 
 **Implementation**
 - Aligned with efforts from Presidential taskforce on HRH reform 
