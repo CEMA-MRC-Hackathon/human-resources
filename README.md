@@ -64,4 +64,4 @@ Health workforce data
 - Integrated Human Resource Information System (iHRIS)
 
 **Implementation**
-- Aligned with efforts from Presidential taskforce on HRH reform 
+- Aligned with efforts from Presidential taskforce on HRH reforms 
