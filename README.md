@@ -4,7 +4,7 @@
 - Moses Muriithi - University of Nairobi
 - John Ojal - KEMRI
 - Jackline Mosinya Nyaberi - JKUAT
-- Penina Mwongeli Nzoka - MoH
+- Peninna Mwongeli Nzoka - MoH
 - George Kamundia - CEMA
 - Francis Ondicho Motiri - MoH
 - Sabine van Elsland - MRC Imperial
