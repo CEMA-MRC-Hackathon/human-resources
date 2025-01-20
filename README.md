@@ -2,7 +2,7 @@
 
 **Team**
 - Moses Muriithi - University of Nairobi
-- John Ojal - KEMRI
+- John Ojal - KEMRI-Wellcome Trust Research Programme
 - Jackline Mosinya Nyaberi - JKUAT
 - Peninna Mwongeli Nzoka - MoH
 - George Kamundia - CEMA
