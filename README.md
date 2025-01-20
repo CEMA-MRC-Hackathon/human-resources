@@ -46,7 +46,7 @@ Longitudinal data
 
 **Outputs**
 - Dashboard to provide perspective for financial projections and fiscal space
-- Investment case
+- Investment case that is evidence-based
 
 **Models**
 1. Staffing model: Will create HR needs based on standards
