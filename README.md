@@ -13,7 +13,7 @@
 **Goal**
 
 Sustainable investment for health workforce
-(How to project recruitment model for healthcare workers based on evidence)
+(How to project recruitment model for healthcare workers based on evidence)/How to optimize the health workforce in kenya towards achieving UHC
 
 **Objectives**
 
