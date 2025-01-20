@@ -1,7 +1,8 @@
 # human-resources
 
-**Goal: Sustainable investment for health workforce**
-How to project recruitment model for healthcare workers based on evidence
+**Goal**
+Sustainable investment for health workforce
+(How to project recruitment model for healthcare workers based on evidence)
 
 **Objectives:**
 Evidence to understand:
