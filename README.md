@@ -1,13 +1,14 @@
 # human-resources
 
 **Team**
-Moses Muriithi - University of Nairobi
-John Ojal - KEMRI
-Jackline Mosinya Nyaberi - JKUAT
-Penina Mwongeli Nzoka - MoH
-George Kamundia - CEMA
-Francis Ondicho Motiri - MoH
-Sabine van Elsland - MRC Imperial
+- Moses Muriithi - University of Nairobi
+- John Ojal - KEMRI
+- Jackline Mosinya Nyaberi - JKUAT
+- Penina Mwongeli Nzoka - MoH
+- George Kamundia - CEMA
+- Francis Ondicho Motiri - MoH
+- Sabine van Elsland - MRC Imperial
+- Lilith Whittles - MRC Imperial
 
 **Goal**
 
