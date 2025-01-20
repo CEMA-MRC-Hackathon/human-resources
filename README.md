@@ -36,7 +36,7 @@ Health workforce data level
 
 Pathway from training to becoming part of the workforce
 - Production (come out of training), 
-- Supply (want to work in Kenya, not migrated, moved out of field), 
+- Supply (want to work in Kenya, not migrated, moved out of fiel,staff nortalityd), 
 - Demand (available jobs and places), 
 - Need (provide best care requirements)
 
