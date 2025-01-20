@@ -14,7 +14,7 @@ Evidence to understand:
 - Capacity building
 - Equipment
 
-**Data requirement:**
+**Data requirements:**
 
 Health workforce data level 
 - Private vs public
@@ -34,7 +34,7 @@ Longitudinal data
 - Baseline data, monitor and evaluation of intervention
 - Continued data pipelines to have most up to date current outputs
 
-**Output**
+**Outputs**
 - Dashboard to provide perspective for financial projections and fiscal space
 - Investment case
 
@@ -53,5 +53,5 @@ Activity standards across different cadres (time per patient)
 Disease burden (by county, by cadre)
 Integrated resource information system (IRIS)
 
-Implementation
+**Implementation**
 - Aligned with efforts from Presidential taskforce on HRH reform 
