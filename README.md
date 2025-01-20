@@ -39,9 +39,9 @@ Longitudinal data
 - Investment case
 
 **Models**
-1. Staffing model 
-2. Staffing gaps
-3. Interventions
+1. Staffing model: Will create HR needs based on standards
+2. Staffing gaps : Will compare ideal requirements versus existing staffing to identify gaps
+3. Interventions : This will explores actions, and thier cost-effectiveness, required to fill the identified gaps
 
 **Available data** 
 
