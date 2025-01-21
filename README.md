@@ -42,7 +42,7 @@ Pathway from training to becoming part of the workforce
 - Need (provide best care requirements)
 
 Longitudinal data
-- Baseline data, monitor and evaluation of intervention
+- Baseline data, monitoring and evaluation of intervention
 - Continued data pipelines to have most up to date current outputs
 
 **Outputs**
