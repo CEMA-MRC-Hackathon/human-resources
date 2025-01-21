@@ -18,6 +18,9 @@ Sustainable investment for health workforce
 
 **Objectives**
 
+Over the hackathon our objective is to: 
+To create a proof-of-concept county-level dashboard, nitially for a single disease: malaria, that combines 1) the burden of disease with 2) the healthcare human time-resources required to treat each case, to quantify the total time needed by cadre of healthworker, then compares this need to the current healthcare human time-resources available, to quantify the extent of unmet needs. 
+
 Evidence to understand:
 - Training
 - Employment/Recruitment
