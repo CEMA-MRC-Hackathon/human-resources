@@ -1,7 +1,7 @@
 # human-resources
 
 **Team**
-- Moses Muriithi - University of Nairobi
+- Moses k. Muriithi - University of Nairobi
 - John Ojal - KEMRI-Wellcome Trust Research Programme
 - Jackline Mosinya Nyaberi - JKUAT-School of Public Health
 - Peninna Mwongeli Nzoka - MoH
