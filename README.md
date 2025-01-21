@@ -3,7 +3,7 @@
 **Team**
 - Moses k. Muriithi - University of Nairobi
 - John Ojal - KEMRI-Wellcome Trust Research Programme
-- Jackline Mosinya Nyaberi - JKUAT-School of Public Health
+- Jackline Mosinya Nyaberi - JKUAT-School of Public Health,Kenya
 - Peninna Mwongeli Nzoka - MoH
 - George Kamundia - CEMA
 - Francis Ondicho Motiri - MoH
