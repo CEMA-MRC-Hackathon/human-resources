@@ -73,7 +73,7 @@ Health workforce data
 **Analytical Plan**
 
 By the end of the week we plan to:
-1. compile data on HIV burden by county
+1. compile data on HIV burden by county (prevalence x population)
 2. compile time time needed to treat each case by cadre
 3. combine (1) with (2) to determine total time resources needed per county
 4. collate human time resources available by county and cadre (=time resources available)
@@ -81,3 +81,10 @@ By the end of the week we plan to:
 6. create dashboard
 7. create data visualiations, including maps of (1-5)
 8. decide on priority model extensions
+
+By the end of Tuesday we aim to
+- have collated all the data (1) (2) and (4) - Francis, Lilith
+- get data into a tidy format for use in the model - John
+- create a wireframe of the dashboard (Sabine, Jackie and George)
+- Decide on priority next steps (Moses, Penina)
+
