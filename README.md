@@ -19,7 +19,7 @@ Sustainable investment for health workforce
 
 Evidence to understand:
 - Training
-- Employment
+- Employment/Recruitment
 - Retention 
 - Capacity building
 - Equipment
