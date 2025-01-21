@@ -7,7 +7,7 @@
 - Peninna Mwongeli Nzoka - MoH
 - George Kamundia - CEMA
 - Francis Ondicho Motiri - MoH
-- Sabine L van Elsland - MRC Imperial
+- Sabine Ls van Elsland - MRC Imperial
 - Lilith Whittles - MRC Imperial
 - OJ Watson - MRC Imperial
 
