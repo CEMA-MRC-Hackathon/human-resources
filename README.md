@@ -51,7 +51,7 @@ Longitudinal data
 **Models**
 1. Staffing model: Will create HR needs based on standards
 2. Staffing gaps : Will compare ideal requirements versus existing staffing to identify gaps
-3. Interventions : This will explores actions, and thier cost-effectiveness, required to fill the identified gaps
+3. Interventions : This will explore actions, and their cost-effectiveness, required to fill the identified gaps
 
 **Available data** 
 
