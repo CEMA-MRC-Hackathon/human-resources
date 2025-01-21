@@ -4,9 +4,9 @@
 - Moses Muriithi - University of Nairobi
 - John Ojal - KEMRI-Wellcome Trust Research Programme
 - Jackline Mosinya Nyaberi - JKUAT
-- Peninna Mwongeli Nzoka - MoH
+- Peninna Mwongeli Nzoka - Ministry of Health
 - George Kamundia - CEMA
-- Francis Ondicho Motiri - MoH
+- Francis Ondicho Motiri - Ministry of Health
 - Sabine van Elsland - MRC Imperial
 - Lilith Whittles - MRC Imperial
 - OJ Watson - MRC Imperial
