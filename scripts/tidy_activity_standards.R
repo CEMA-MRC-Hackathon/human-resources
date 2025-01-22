@@ -9,7 +9,7 @@ library(readxl)
 library(descr)
 
 #-------------------
-# load data ans examine 
+# load data and examine 
 #-------------------
 
 # Minutes used for each task
