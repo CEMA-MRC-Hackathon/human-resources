@@ -4,7 +4,7 @@ library(ggplot2)
 library(dplyr)
 library(sf)
 library(shinydashboard)
-st_drivers()
+#st_drivers()
 
 # Load data
 #hiv_data <- read.csv("C:/Users/Anarchy/Downloads/HIV_Prevlance percounty.csv" )
@@ -35,8 +35,8 @@ ui <- fluidPage(
       z-index:1000;
       }
       .logo-container img {
-      height: 171px;
-      width: 295px;
+      height: 175px;
+      width: 1714px;
       object-fit: contain;
       }
       
@@ -45,7 +45,7 @@ ui <- fluidPage(
   
   #Logo
   div(class = "logo-container",
-      img(src= "CEMA.jpeg", alt= "Logo")
+      img(src= "Logo1.png", alt= "Logo")
       ),
 
   
