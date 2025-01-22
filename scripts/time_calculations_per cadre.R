@@ -16,7 +16,7 @@ prob_inpatient = 0.02 # information from Francis. Need hard reference.
 standards_data = standards_data |> mutate(inpatient_intervention=grepl("Inpatient",essential_intervention)*1) |> mutate(adjusted_expected_time_spent_in_minutes=expected_time_spent_in_minutes*(1-inpatient_intervention) + expected_time_spent_in_minutes*prob_inpatient*inpatient_intervention)
 
 # calculate total time needed per cadre per patient in each HIV condition
-summary_by_cadre <- standards_data |> group_by(disease_condition_risk_factor_public_health_function,occupation) |> summarise(total_time_per_patient_per_year_in_hours=sum(expected_time_spent_in_minutes)/60) |>
+summary_by_cadre <- standards_data |> group_by(disease_condition_risk_factor_public_health_function,occupation) |> summarise(total_time_per_patient_per_year_in_hours=sum(expected_time_spent_in_minutes)/60, .groups = "drop") |>
   rename(category=disease_condition_risk_factor_public_health_function)
 
 # merge with patients_needing_care_by_category
@@ -29,6 +29,6 @@ freq(patients_needing_care_by_category$occupation)
 
 # summaries time by cadre by county
 patients_needing_care_by_category <- patients_needing_care_by_category |> mutate(total_time = number_needing_care_by_category*total_time_per_patient_per_year_in_hours)
-summary_times_by_cadre_by_county  <- patients_needing_care_by_category |> group_by(district,occupation) |> summarise(total_time_in_hours_per_year=sum(total_time))
+summary_times_by_cadre_by_county  <- patients_needing_care_by_category |> group_by(district,occupation) |> summarise(total_time_in_hours_per_year=sum(total_time), .groups = "drop")
 
 saveRDS(summary_times_by_cadre_by_county,"outputs/summary_times_by_cadre_by_county.rds")
