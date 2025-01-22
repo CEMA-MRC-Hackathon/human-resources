@@ -4,9 +4,9 @@
 - Moses k. Muriithi - University of Nairobi
 - John Ojal - KEMRI-Wellcome Trust Research Programme
 - Jackline Mosinya Nyaberi - JKUAT-School of Public Health, Kenya
-- Peninna Mwongeli Nzoka - MoH
+- Peninna Mwongeli Nzoka - Ministry of Health
 - George Kamundia - CEMA
-- Francis Ondicho Motiri - MoH
+- Francis Ondicho Motiri - Ministry of Health
 - Sabine L van Elsland - MRC Imperial
 - Lilith Whittles - MRC Imperial
 - OJ Watson - MRC Imperial
@@ -40,12 +40,12 @@ Health workforce data level
 
 Pathway from training to becoming part of the workforce
 - Production (come out of training), 
-- Supply (want to work in Kenya, not migrated, moved out of fiel,staff mortality), 
+- Supply (want to work in Kenya, not migrated, moved out of field,staff mortality), 
 - Demand (available jobs and places), 
 - Need (provide best care requirements)
 
 Longitudinal data
-- Baseline data, monitor and evaluation of intervention
+- Baseline data, monitoring and evaluation of intervention
 - Continued data pipelines to have most up to date current outputs
 
 **Outputs**
