@@ -28,29 +28,32 @@ ui <- fluidPage(
         background-color: #3c8dbc !important;
         color: white !important;
       }
-      .logo-container {
-      position: absolute;
-      top: 15px;
-      right: 10px;
-      z-index:1000;
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
       }
       .logo-container img {
-      height: 175px;
-      width: 1714px;
-      object-fit: contain;
+        height: 175px;
+        width: 295px;
+        object-fit: contain;
       }
-      
+      .title-container {
+        flex-grow: 1;
+      }
     "))
   ),
   
-  #Logo
-  div(class = "logo-container",
-      img(src= "Logo1.png", alt= "Logo")
+  # Header with Title and Logo
+  div(class = "header-container",
+      div(class = "title-container",
+          titlePanel("Kenya Healthcare Dashboard")
       ),
-
-  
-  # Title
-  titlePanel("Kenya Healthcare Dashboard"),
+      div(class = "logo-container",
+          img(src = "CEMA.jpeg", alt = "Logo")
+      )
+  ),
   
   # Navigation tabs at the top
   tabsetPanel(
