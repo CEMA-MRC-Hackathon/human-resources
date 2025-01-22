@@ -88,3 +88,7 @@ By the end of Tuesday we aim to
 - create a wireframe of the dashboard (Sabine, Jackie and George)
 - Decide on priority next steps (Moses, Penina)
 
+**Priority next steps**
+1. HRH Projections
+2. Add more diseases (epidemiological disease burden vs health workforce specialty, HRH time reduction vs policy intervention -vaccination)to the dashboard
+3. Potential future trends e.g. global policy changes and other assumptions vs effects on health workforce supply and demand
