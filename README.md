@@ -70,6 +70,12 @@ Health workforce data
 **Implementation**
 - Aligned with efforts from Presidential taskforce on HRH reforms
 
+
+**Priority next Steps**
+1. HRH evidence-based Projections (Potential future trends e.g. global policy changes and other assumptions vs effects on health workforce supply and demand)
+2. Add more diseases that could have current interventions like vaccines (epidemiological disease burden vs health workforce specialty, HRH time reduction vs policy intervention -vaccination)to the dashboard
+3. Investment case (From the HRH gap established we estimate the resource need for the gap using unit cost for each cadre)
+
 **Analytical Plan**
 
 By the end of the week we plan to:
