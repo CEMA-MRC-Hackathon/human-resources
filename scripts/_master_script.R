@@ -5,8 +5,8 @@ source("./scripts/tidy_population_data.R")
 ## A2) HIV prevalence data
 source("./scripts/tidy_population_data.R")
 ## A3) compile time needed to treat each case by cadre - John
-# TODO: read activity standard for HIV
-# TODO: read health facility availability
+source("./scripts/tidy_activity_standards.R")
+source("./scripts/time_calculations_per cadre")
 ## A4) Available resources (number in each cadre) data
 source("./scripts/tidy_available_resources.R")
 ## A5) Working time by cadre data
