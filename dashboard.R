@@ -74,8 +74,8 @@ ui <- fluidPage(
                         selectInput("county_filter", "Select County:", 
                                     choices = c("All", unique(hiv_data$County)),
                                     selected = "All"),
-                        selectInput("hiv_filter", "HIV Prevalence:", 
-                                    choices = c("All", sort(unique(hiv_data$`HIV prevalence`))),
+                        selectInput("Disease_filter", "Select Disease:", 
+                                    choices = c("HIV", sort(unique(hiv_data$`HIV prevalence`))),
                                     selected = "All"),
                         selectInput("worker_filter", "Type of Health Worker:", 
                                     choices = c("All", unique(hiv_data$`Type of Worker`)),
@@ -96,8 +96,8 @@ ui <- fluidPage(
                         selectInput("county_filter_bar", "Select County:", 
                                     choices = c("All", unique(hiv_data$County)),
                                     selected = "All"),
-                        selectInput("hiv_filter_bar", "HIV Prevalence:", 
-                                    choices = c("All", sort(unique(hiv_data$`HIV prevalence`))),
+                        selectInput("Disease_filter_bar", "Select Disease:", 
+                                    choices = c("HIV", sort(unique(hiv_data$`HIV prevalence`))),
                                     selected = "All"),
                         selectInput("worker_filter_bar", "Type of Health Worker:", 
                                     choices = c("All", unique(hiv_data$`Type of Worker`)),
@@ -165,7 +165,7 @@ server <- function(input, output, session) {
     if (input$county_filter != "All") {
       data <- data[data$County == input$county_filter, ]
     }
-    if (input$hiv_filter != "All") {
+    if (input$Disease != "HIV") {
       data <- data[data$`HIV prevalence` == input$hiv_filter, ]
     }
     if (input$worker_filter != "All") {
