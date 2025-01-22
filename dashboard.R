@@ -29,8 +29,8 @@ ui <- fluidPage(
         color: white !important;
       }
       .logo-container img {
-        height: 75px;
-        width: 295px;
+        height: 50px;
+        width: 300px;
         object-fit: contain;
         display: block;
         margin: auto;
