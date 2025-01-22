@@ -82,11 +82,12 @@ By the end of the week we plan to:
 1. compile data on HIV burden by county (prevalence x population)
 2. compile time time needed to treat each case by cadre
 3. combine (1) with (2) to determine total time resources needed per county
-4. collate human time resources available by county and cadre (=time resources available)
-5. compare time resources available (4) vs need (3) to determine unmet needs
-6. create dashboard
-7. create data visualiations, including maps of (1-5)
-8. decide on priority model extensions
+4. Clean and manage data for analysis
+5. collate human time resources available by county and cadre (=time resources available)
+6. compare time resources available (4) vs need (3) to determine unmet needs
+7. create dashboard
+8. create data visualiations, including maps of (1-5)
+9. decide on priority model extensions
 
 **Data sources**
 PLHIV ART catchment data https://naomi-spectrum.unaids.org/
