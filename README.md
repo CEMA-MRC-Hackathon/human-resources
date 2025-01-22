@@ -82,6 +82,10 @@ By the end of the week we plan to:
 7. create data visualiations, including maps of (1-5)
 8. decide on priority model extensions
 
+**Data sources**
+PLHIV ART catchment data https://naomi-spectrum.unaids.org/
+Kenya population data https://naomi-spectrum.unaids.org/
+
 By the end of Tuesday we aim to
 - have collated all the data (1) (2) and (4) - Francis, Lilith
 - get data into a tidy format for use in the model - John
