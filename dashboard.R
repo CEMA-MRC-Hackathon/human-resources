@@ -28,27 +28,33 @@ ui <- fluidPage(
         background-color: #3c8dbc !important;
         color: white !important;
       }
-      .header-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-      }
       .logo-container img {
-        height: 175px;
+        height: 75px;
         width: 295px;
         object-fit: contain;
+        display: block;
+        margin: auto;
+      }
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #ecf0f5;
+        border-bottom: 2px solid #3c8dbc;
       }
       .title-container {
-        flex-grow: 1;
+        font-size: 24px;
+        font-weight: bold;
+        color: #3c8dbc;
       }
     "))
   ),
   
-  # Header with Title and Logo
+  # Header with title and logo
   div(class = "header-container",
       div(class = "title-container",
-          titlePanel("Kenya Healthcare Dashboard")
+          "Kenya Healthcare Dashboard"
       ),
       div(class = "logo-container",
           img(src = "CEMA.jpeg", alt = "Logo")
