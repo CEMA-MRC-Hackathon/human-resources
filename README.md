@@ -103,3 +103,21 @@ By the end of Tuesday we aim to
 1. HRH evidence-based Projections (Potential future trends e.g. global policy changes and other assumptions vs effects on health workforce supply and demand)
 2. Add more diseases that could have current interventions like vaccines (epidemiological disease burden vs health workforce specialty, HRH time reduction vs policy intervention -vaccination)to the dashboard
 3. Investment case (From the HRH gap established we estimate the resource need for the gap using unit cost for each cadre)
+ **  **Background****
+Kenya faces critical challenges in its health workforce, including uneven distribution, skill shortages, and limited capacity to address the growing demand for healthcare services.
+These issues are exacerbated by rapid population growth, urbanization, and the increasing prevalence of non-communicable diseases, which place additional strain on the health system.
+ According to the World Health Organization (WHO), Kenya has fewer than 2 healthcare workers per 1,000 people, far below the recommended threshold of 4.45 to achieve universal health coverage. Furthermore, rural and underserved areas suffer from significant shortages, as most health professionals gravitate toward urban centers, leaving vulnerable populations without adequate care.
+A recruitment model tailored to Kenya’s unique needs can address these disparities by creating a systematic approach to attract, deploy, and retain health workers in critical areas. Such a model would ensure equitable distribution of health personnel, integrate workforce planning with national health priorities, and optimize resource allocation.
+Additionally, it can align with Kenya's Vision 2030 and the Universal Health Coverage (UHC) agenda by improving service delivery and outcomes. The model could also consider factors such as incentives, training pipelines, and career growth opportunities to reduce turnover and brain drain. A robust recruitment model would ultimately enhance healthcare access and equity, contributing to a stronger health system capable of meeting the country's evolving needs.
+The constitution of Kenya, 2010 recognizes health as a human right,every kenyan has highest standard of care (Kenya, Constitution,2010)
+The Bottom-up-Economic Transformative Agenda (BETA), health workforce as a major pillar (Government of Kenya,blueprint)
+The World Health Assembly 78 (WHA), prioritized to achieve SDG 3c
+Africa Union Agenda 2063, Health worforce development compact for strengthening health systems and reduce mortalities and morbidities (AU,2015)
+   Health sysgtems suffer from the tripple burden of epidemiological transitions
+The need for strengthening health systems for a Fit-For-Purpose health workforce, the health workforce needs vs population health needs
+ Urgent need for recruitment modelling for effective recruitment,retention and distribution (rural-urban and underserved to inform planning,financing (domestic, regional, and global) and projections in absorption and employment and investment case for resource planning.
+ Inform decsion and policy makers in special districbution of health workforce based on the disease burden in the country and epidemiological transitions.....
+   Evidence-based approach for healthcare human resource allocation
+   
+   
+   
