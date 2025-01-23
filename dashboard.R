@@ -9,7 +9,7 @@ library(MetBrewer)
 
 # Load data
 raw_sf_data <- sf::st_read("./data/county_shapefiles/ken_admbnda_adm1_iebc_20191031.shp")
-results_hr_deficits_by_county_and_cadre <- readRDS("~/human-resources/outputs/results_hr_deficits_by_county_and_cadre.rds")
+results_hr_deficits_by_county_and_cadre <- readRDS("./outputs/results_hr_deficits_by_county_and_cadre.rds")
 
 
 # Rename district values to match the shapefile names
@@ -100,7 +100,7 @@ ui <- fluidPage(
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
                                       "Number of Workers" = "number", 
-                                      "Hours Available per Year" = "hours_available_per_year",
+                                      "Hours Available per Year" = "hours_avaialable_per_year",
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
@@ -108,7 +108,10 @@ ui <- fluidPage(
                         selectInput("Cadre", "Select Cadre:", 
                                     choices = c("All", unique(results_hr_deficits_by_county_and_cadre$cadre)),
                                     selected = "All")
-                      )
+                        
+                      ),
+                      #Bar graph added below the filters
+                      plotOutput("county_bar_graph", height = "600px", width = "500px")
                ),
                column(9,
                       leafletOutput("kenya_map", height = "800px")
@@ -196,6 +199,9 @@ ui <- fluidPage(
 )
 # In Server
 server <- function(input, output, session) {
+  # Reactive value to store the selected county
+  selected_county <- reactiveVal(NULL)
+  
   # Reactive data for map
   map_data <- reactive({
     data <- results_hr_deficits_by_county_and_cadre
@@ -229,7 +235,7 @@ server <- function(input, output, session) {
       left_join(aggregated_data, by = c("ADM1_EN" = "district")) 
     # Keep only regions within Kenya
     #map_sf <- map_sf %>%
-      #filter(!is.na(value)) # Ensure only valid data for Kenya remains
+    #filter(!is.na(value)) # Ensure only valid data for Kenya remains
     return(map_sf)
   })
   
@@ -237,16 +243,15 @@ server <- function(input, output, session) {
   output$kenya_map <- renderLeaflet({
     mapdata <- map_data()
     
-    # Extract colors from Hiroshige palette
-    hiroshige_colors <- as.character(met.brewer("Hiroshige", n = 10))
-    
-    # Custom color function for diverging palette
+    # Color palette
+    lim <- max(abs(mapdata$value), na.rm = T)
     pal <- colorNumeric(
-      palette = hiroshige_colors,
-      domain = mapdata$value
+      palette = c(met.brewer("Demuth",11)), 
+      domain = c(-lim,lim) # mapdata$value #
     )
     
     
+    #Create Leaflet map 
     leaflet(mapdata) %>%
       addTiles() %>%
       addPolygons(
@@ -265,30 +270,9 @@ server <- function(input, output, session) {
           "District:", ADM1_EN, 
           "<br>", input$Indicator, ":", round(value, 2)
         ),
-        # Popup with detailed information
-        popup = ~{
-          district_details <- results_hr_deficits_by_county_and_cadre %>%
-            filter(district == ADM1_EN) %>%
-            select(cadre, hours_needed_per_year, number, 
-                   hours_available_per_year, deficit_in_hours_per_year, 
-                   deficit_in_number_per_year) %>%
-            mutate(across(where(is.numeric), round, 2))
-          
-          # Create HTML table
-          table_html <- paste(
-            "<table border='1' style='width:100%'>",
-            "<tr><th>Cadre</th><th>Hours Needed</th><th>Number</th>",
-            "<th>Hours Available</th><th>Deficit (Hours)</th><th>Deficit (Number)</th></tr>",
-            apply(district_details, 1, function(row) {
-              paste0("<tr>", 
-                     paste0("<td>", row, "</td>", collapse = ""),
-                     "</tr>")
-            }),
-            "</table>"
-          )
-          
-          table_html
-        }
+        
+        layerId = ~ADM1_EN
+        
       ) %>%
       #Add Legend
       addLegend(
@@ -298,23 +282,46 @@ server <- function(input, output, session) {
         position = "bottomright"
       )
   })
-
   
-  # Render Bar Graph
-  output$bar_graph <- renderPlot({
-    data <- filtered_data() %>%
-      group_by(County) %>%
-      summarise(
-        Total_Deficit = sum(Deficit),
-        Total_Workers = sum(`Current Workers`)
-      )
-    
-    ggplot(data, aes(x = reorder(County, Total_Deficit), y = Total_Deficit, fill = County)) +
-      geom_bar(stat = "identity", position = "dodge") +
-      labs(title = "Deficit vs Current Healthcare Workers", x = "County", y = "Number of Workers") +
-      theme_minimal() +
-      coord_flip()
+  
+  # Update selected county on map click
+  observeEvent(input$kenya_map_shape_click, {
+    selected_county(input$kenya_map_shape_click$id)
   })
+  
+  # Reactive data for bar graph
+  bar_graph_data <- reactive({
+    req(input$kenya_map_shape_click$id)  # Ensure a county is selected
+    data <- results_hr_deficits_by_county_and_cadre %>%
+      filter(district == input$kenya_map_shape_click$id) %>%
+      group_by(cadre) %>%
+      summarise(deficit_in_number_per_year = sum(deficit_in_number_per_year, na.rm = TRUE))
+    return(data)
+  })
+  
+  # Render the bar graph
+  output$county_bar_graph <- renderPlot({
+    # Retrieve the selected county from the input
+    selected_county <- input$kenya_map_shape_click$id  # Adjust the input ID based on your UI setup
+    
+    data <- bar_graph_data()
+    ggplot(data, aes(y = reorder(cadre, -deficit_in_number_per_year), x = deficit_in_number_per_year, fill = "red")) +
+      geom_bar(stat = "identity") +
+      labs(title = "Deficit in Number per Year by Cadre", x = "Deficit", y = "", subtitle = selected_county) +
+
+      theme_minimal() +
+      scale_y_discrete(label = function(x) str_wrap(x, width=20)) + 
+      theme(
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 16),  # Rotate x-axis labels for better readability
+        axis.text.y = element_text(size = 12),
+        legend.position = "none",  # Remove the legend
+        plot.subtitle = element_text(size = 16, face = "bold", hjust = 0.5),
+        plot.title = element_text(size = 16, face = "bold"),  # Increase title font size
+        axis.title.x = element_text(size = 14),  # Adjust x-axis label font size
+        axis.title.y = element_text(size = 14)   # Adjust y-axis label font size
+      )
+  }, height = 500, width = 450)  # Increased height and width for better visualization
+  
 }
 
 # Run App
