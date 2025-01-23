@@ -261,6 +261,7 @@ server <- function(input, output, session) {
           "District:", ADM1_EN, 
           "<br>", input$Indicator, ":", round(value, 2)
         ),
+        layerId = ~ADM1_EN
       ) %>%
       #Add Legend
       addLegend(
@@ -298,7 +299,7 @@ server <- function(input, output, session) {
       labs(title = "Deficit in Number per Year by Cadre", x = "Deficit", y = "", subtitle = selected_county) +
 
       theme_minimal() +
-      scale_y_discrete(label = function(x) str_wrap(x, width=20)) + 
+      scale_y_discrete(label = function(x) stringr::str_wrap(x, width = 20)) + 
       theme(
         axis.text.x = element_text(angle = 45, hjust = 1, size = 16),  # Rotate x-axis labels for better readability
         axis.text.y = element_text(size = 12),
