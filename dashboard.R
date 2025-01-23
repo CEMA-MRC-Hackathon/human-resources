@@ -270,9 +270,6 @@ server <- function(input, output, session) {
           "District:", ADM1_EN, 
           "<br>", input$Indicator, ":", round(value, 2)
         ),
-        
-        layerId = ~ADM1_EN
-        
       ) %>%
       #Add Legend
       addLegend(
