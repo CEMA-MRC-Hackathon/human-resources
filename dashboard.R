@@ -226,7 +226,9 @@ server <- function(input, output, session) {
     # Merge with shapefile
     map_sf <- raw_sf_data %>%
       left_join(aggregated_data, by = c("ADM1_EN" = "district")) 
-    
+    # Keep only regions within Kenya
+    #map_sf <- map_sf %>%
+      #filter(!is.na(value)) # Ensure only valid data for Kenya remains
     return(map_sf)
   })
   
