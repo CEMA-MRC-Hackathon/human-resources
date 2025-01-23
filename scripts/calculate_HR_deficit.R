@@ -85,9 +85,9 @@ summary_times_by_cadre_by_county <- summary_times_by_cadre_by_county |> mutate_a
 working_time_per_personel_per_year_in_hours = 1752 # sourced from ./outputs/data_working_time_by_cadre, shows similar time across cadre
 
 results_hr_deficits_by_county_and_cadre <- left_join(summary_times_by_cadre_by_county,data_available_time_resources, by=c("district","cadre")) |> select(-c("days_per_year","minutes_per_year")) |>
-  rename(hours_needed_per_year=total_time_in_hours_per_year, hours_avaialable_per_year=hours_per_year) |>
-  mutate(deficit_in_hours_per_year = hours_avaialable_per_year-hours_needed_per_year) |>
-  mutate(deficit_in_number_per_year = deficit_in_hours_per_year/(working_time_per_personel_per_year_in_hours))
+  rename(hours_needed_per_year=total_time_in_hours_per_year, hours_available_per_year=hours_per_year) |>
+  mutate(deficit_in_hours_per_year = hours_needed_per_year-hours_available_per_year) |>
+  mutate(deficit_in_number_per_year = round(deficit_in_hours_per_year/(working_time_per_personel_per_year_in_hours)),1)
 
 
 saveRDS(results_hr_deficits_by_county_and_cadre,"outputs/results_hr_deficits_by_county_and_cadre.rds")
