@@ -4,11 +4,12 @@ library(ggplot2)
 library(dplyr)
 library(sf)
 library(shinydashboard)
+library(MetBrewer)
 #st_drivers()
 
 # Load data
 raw_sf_data <- sf::st_read("./data/county_shapefiles/ken_admbnda_adm1_iebc_20191031.shp")
-results_hr_deficits_by_county_and_cadre <- readRDS("~/human-resources/outputs/results_hr_deficits_by_county_and_cadre.rds")
+results_hr_deficits_by_county_and_cadre <- readRDS("./outputs/results_hr_deficits_by_county_and_cadre.rds")
 
 
 # Rename district values to match the shapefile names
@@ -130,7 +131,7 @@ ui <- fluidPage(
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
                                       "Number of Workers" = "number", 
-                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Hours Available per Year" = "hours_available_per_year",
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
@@ -237,9 +238,10 @@ server <- function(input, output, session) {
     mapdata <- map_data()
     
     # Color palette
+    lim <- max(abs(mapdata$value), na.rm = T)
     pal <- colorNumeric(
-      palette = "YlOrRd", 
-      domain = mapdata$value
+      palette = c(met.brewer("Demuth",11)), 
+      domain = c(-lim,lim) # mapdata$value #
     )
     
     leaflet(mapdata) %>%
@@ -265,7 +267,7 @@ server <- function(input, output, session) {
           district_details <- results_hr_deficits_by_county_and_cadre %>%
             filter(district == ADM1_EN) %>%
             select(cadre, hours_needed_per_year, number, 
-                   hours_avaialable_per_year, deficit_in_hours_per_year, 
+                   hours_available_per_year, deficit_in_hours_per_year, 
                    deficit_in_number_per_year) %>%
             mutate(across(where(is.numeric), round, 2))
           
