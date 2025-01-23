@@ -4,6 +4,7 @@ library(ggplot2)
 library(dplyr)
 library(sf)
 library(shinydashboard)
+library(MetBrewer)
 #st_drivers()
 
 # Load data
@@ -99,7 +100,7 @@ ui <- fluidPage(
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
                                       "Number of Workers" = "number", 
-                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Hours Available per Year" = "hours_available_per_year",
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
@@ -130,7 +131,7 @@ ui <- fluidPage(
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
                                       "Number of Workers" = "number", 
-                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Hours Available per Year" = "hours_available_per_year",
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
@@ -236,11 +237,15 @@ server <- function(input, output, session) {
   output$kenya_map <- renderLeaflet({
     mapdata <- map_data()
     
-    # Color palette
+    # Extract colors from Hiroshige palette
+    hiroshige_colors <- as.character(met.brewer("Hiroshige", n = 10))
+    
+    # Custom color function for diverging palette
     pal <- colorNumeric(
-      palette = "YlOrRd", 
+      palette = hiroshige_colors,
       domain = mapdata$value
     )
+    
     
     leaflet(mapdata) %>%
       addTiles() %>%
@@ -265,7 +270,7 @@ server <- function(input, output, session) {
           district_details <- results_hr_deficits_by_county_and_cadre %>%
             filter(district == ADM1_EN) %>%
             select(cadre, hours_needed_per_year, number, 
-                   hours_avaialable_per_year, deficit_in_hours_per_year, 
+                   hours_available_per_year, deficit_in_hours_per_year, 
                    deficit_in_number_per_year) %>%
             mutate(across(where(is.numeric), round, 2))
           
