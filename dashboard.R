@@ -124,12 +124,6 @@ ui <- fluidPage(
              fluidRow(
                column(3,
                       wellPanel(
-                        selectInput("District_filter", "Select District:", 
-                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$district)),
-                                    selected = "All"),
-                        selectInput("Disease_filter", "Select Disease:", 
-                                    choices = "HIV",
-                                    selected = "HIV"),
                         selectInput("Indicator", "Select Indicator:", 
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
@@ -138,14 +132,11 @@ ui <- fluidPage(
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
-                                    selected = "hours_needed_per_year"),
-                        selectInput("Cadre", "Select Cadre:", 
-                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$cadre)),
-                                    selected = "All")
+                                    selected = "hours_needed_per_year")
                       )
                ),
                column(9,
-                      plotOutput("bar_graph", height = "800px")
+                      plotOutput("overall_bar_graph", height = "800px")
                )
              )
     ),
@@ -318,6 +309,23 @@ server <- function(input, output, session) {
         axis.title.y = element_text(size = 14)   # Adjust y-axis label font size
       )
   }, height = 500, width = 450)  # Increased height and width for better visualization
+  
+  # Render bar plot in the Graph tab
+  cols <- c(met.brewer("Johnson", 5),
+            met.brewer("Archambault", 7)[1:4],
+            met.brewer("Java", 5)[5])
+  
+  output$overall_bar_graph <- renderPlot({
+    results_hr_deficits_by_county_and_cadre |> pivot_longer(-(district:cadre)) |>
+      filter(name == input$Indicator) |>
+      ggplot(aes(y = fct_rev(district), x = value, group = cadre, fill = cadre)) +
+      geom_bar(stat = "identity") +
+      theme_bw() +
+      scale_fill_manual(values = cols) +
+      theme(legend.position="bottom") + 
+      labs(fill = "Cadre of healthworker", y = "", x = "")
+  })
+  
   
 }
 
