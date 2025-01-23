@@ -204,9 +204,18 @@ server <- function(input, output, session) {
       data <- data[data$district == input$District_filter, ]
     }
     
-    # Filter by Cadre
-    if (input$Cadre != "All") {
+    # Handle Cadre filtering
+    if (input$Cadre == "All") {
+      # Sum across all cadres
+      aggregated_data <- data %>%
+        group_by(district) %>%
+        summarise(value = sum(.data[[input$Indicator]], na.rm = TRUE))
+    } else {
+      # Filter for specific cadre
       data <- data[data$cadre == input$Cadre, ]
+      aggregated_data <- data %>%
+        group_by(district) %>%
+        summarise(value = sum(.data[[input$Indicator]], na.rm = TRUE))
     }
     
     # Aggregate data by district
@@ -216,7 +225,7 @@ server <- function(input, output, session) {
     
     # Merge with shapefile
     map_sf <- raw_sf_data %>%
-      left_join(aggregated_data, by = c("ADM1_EN" = "district"))
+      left_join(aggregated_data, by = c("ADM1_EN" = "district")) 
     
     return(map_sf)
   })
@@ -273,6 +282,13 @@ server <- function(input, output, session) {
           
           table_html
         }
+      ) %>%
+      #Add Legend
+      addLegend(
+        pal = pal,
+        values = ~value,
+        title = input$Indicator,
+        position = "bottomright"
       )
   })
 
