@@ -118,6 +118,25 @@ The need for strengthening health systems for a Fit-For-Purpose health workforce
  Urgent need for recruitment modelling for effective recruitment,retention and distribution (rural-urban and underserved to inform planning,financing (domestic, regional, and global) and projections in absorption and employment and investment case for resource planning.
  Inform decsion and policy makers in special districbution of health workforce based on the disease burden in the country and epidemiological transitions.....
    Evidence-based approach for healthcare human resource allocation
-   
-   
+  **** Additional sources for background
+   ****
+   Key Sources:
+Africa CDC Framework for Health Workforce Development 2020-2025
+
+This framework is cited as a foundational document for the Health Workforce Compact and outlines strategies to address health workforce gaps in Africa.
+WHO Global Strategy for Health Workforce 2030
+
+Referenced for global workforce gap estimates and its alignment with Africa's UHC targets.
+African Union Agenda 2063
+
+The Agenda serves as a guiding vision for long-term goals, including health system strengthening and development on the continent.
+Baseline Report on the Health Workforce Status
+
+The document mentions a Baseline Report developed by Africa CDC, which analyzed 376 documents, including 225 journal articles, national health workforce strategies, and other grey literature. This report is the primary source for most of the specific findings and recommendations.
+Africa Health Workforce Investment Charter (2023)
+
+This is mentioned as a key initiative aimed at stimulating investments for the health workforce through multistakeholder engagement and national-level compacts.
+AU Specialised Technical Committee on Health, Nutrition, Population and Drug Control (STC)
+
+The STC's governance structure underpins the Health Workforce Compact.
    
