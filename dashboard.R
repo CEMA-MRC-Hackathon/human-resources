@@ -7,8 +7,26 @@ library(shinydashboard)
 #st_drivers()
 
 # Load data
-#hiv_data <- read.csv("C:/Users/Anarchy/Downloads/HIV_Prevlance percounty.csv" )
-kenya_shapefile <- st_read("C:/Users/Anarchy/Downloads/L4H_sample_data/shapefiles/County.shp")
+raw_sf_data <- sf::st_read("./data/county_shapefiles/ken_admbnda_adm1_iebc_20191031.shp")
+results_hr_deficits_by_county_and_cadre <- readRDS("~/human-resources/outputs/results_hr_deficits_by_county_and_cadre.rds")
+
+
+# Rename district values to match the shapefile names
+results_hr_deficits_by_county_and_cadre <- results_hr_deficits_by_county_and_cadre %>%
+  mutate(
+    district = case_when(
+      district == "Elgeyo Marakwet" ~ "Elgeyo-Marakwet",
+      district == "Muranga" ~ "Murang'a",
+      district == "Tharaka Nithi" ~ "Tharaka-Nithi",
+      TRUE ~ district # Retain other values as is
+    )
+  )
+
+# Verify the changes
+unique(results_hr_deficits_by_county_and_cadre$district)
+unmatched <- setdiff(raw_sf_data$ADM1_EN, results_hr_deficits_by_county_and_cadre$district)
+print(unmatched)
+
 
 # UI
 ui <- fluidPage(
@@ -71,14 +89,23 @@ ui <- fluidPage(
              fluidRow(
                column(3,
                       wellPanel(
-                        selectInput("county_filter", "Select County:", 
-                                    choices = c("All", unique(hiv_data$County)),
+                        selectInput("District_filter", "Select District:", 
+                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$district)),
                                     selected = "All"),
                         selectInput("Disease_filter", "Select Disease:", 
-                                    choices = c("HIV", sort(unique(hiv_data$`HIV prevalence`))),
-                                    selected = "All"),
-                        selectInput("worker_filter", "Type of Health Worker:", 
-                                    choices = c("All", unique(hiv_data$`Type of Worker`)),
+                                    choices = "HIV",
+                                    selected = "HIV"),
+                        selectInput("Indicator", "Select Indicator:", 
+                                    choices = c(
+                                      "Hours Needed per Year" = "hours_needed_per_year",
+                                      "Number of Workers" = "number", 
+                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Deficit in Hours per Year" = "deficit_in_hours_per_year",
+                                      "Deficit in Number per Year" = "deficit_in_number_per_year"
+                                    ),
+                                    selected = "hours_needed_per_year"),
+                        selectInput("Cadre", "Select Cadre:", 
+                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$cadre)),
                                     selected = "All")
                       )
                ),
@@ -93,14 +120,23 @@ ui <- fluidPage(
              fluidRow(
                column(3,
                       wellPanel(
-                        selectInput("county_filter_bar", "Select County:", 
-                                    choices = c("All", unique(hiv_data$County)),
+                        selectInput("District_filter", "Select District:", 
+                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$district)),
                                     selected = "All"),
-                        selectInput("Disease_filter_bar", "Select Disease:", 
-                                    choices = c("HIV", sort(unique(hiv_data$`HIV prevalence`))),
-                                    selected = "All"),
-                        selectInput("worker_filter_bar", "Type of Health Worker:", 
-                                    choices = c("All", unique(hiv_data$`Type of Worker`)),
+                        selectInput("Disease_filter", "Select Disease:", 
+                                    choices = "HIV",
+                                    selected = "HIV"),
+                        selectInput("Indicator", "Select Indicator:", 
+                                    choices = c(
+                                      "Hours Needed per Year" = "hours_needed_per_year",
+                                      "Number of Workers" = "number", 
+                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Deficit in Hours per Year" = "deficit_in_hours_per_year",
+                                      "Deficit in Number per Year" = "deficit_in_number_per_year"
+                                    ),
+                                    selected = "hours_needed_per_year"),
+                        selectInput("Cadre", "Select Cadre:", 
+                                    choices = c("All", unique(results_hr_deficits_by_county_and_cadre$cadre)),
                                     selected = "All")
                       )
                ),
@@ -152,46 +188,112 @@ ui <- fluidPage(
                         tags$li("Sabine L. van Elsland - MRC Imperial"),
                         tags$li("Lilith Whittles - MRC Imperial")
                       )
+               )
              )
     )
   )
 )
-)
-# Server
+# In Server
 server <- function(input, output, session) {
-  # Reactive data for filters
-  filtered_data <- reactive({
-    data <- hiv_data
-    if (input$county_filter != "All") {
-      data <- data[data$County == input$county_filter, ]
+  # Reactive data for map
+  map_data <- reactive({
+    data <- results_hr_deficits_by_county_and_cadre
+    
+    # Filter by District
+    if (input$District_filter != "All") {
+      data <- data[data$district == input$District_filter, ]
     }
-    if (input$Disease != "HIV") {
-      data <- data[data$`HIV prevalence` == input$hiv_filter, ]
+    
+    # Handle Cadre filtering
+    if (input$Cadre == "All") {
+      # Sum across all cadres
+      aggregated_data <- data %>%
+        group_by(district) %>%
+        summarise(value = sum(.data[[input$Indicator]], na.rm = TRUE))
+    } else {
+      # Filter for specific cadre
+      data <- data[data$cadre == input$Cadre, ]
+      aggregated_data <- data %>%
+        group_by(district) %>%
+        summarise(value = sum(.data[[input$Indicator]], na.rm = TRUE))
     }
-    if (input$worker_filter != "All") {
-      data <- data[data$`Type of Worker` == input$worker_filter, ]
-    }
-    return(data)
+    
+    # Aggregate data by district
+    aggregated_data <- data %>%
+      group_by(district) %>%
+      summarise(value = sum(.data[[input$Indicator]], na.rm = TRUE))
+    
+    # Merge with shapefile
+    map_sf <- raw_sf_data %>%
+      left_join(aggregated_data, by = c("ADM1_EN" = "district")) 
+    # Keep only regions within Kenya
+    #map_sf <- map_sf %>%
+      #filter(!is.na(value)) # Ensure only valid data for Kenya remains
+    return(map_sf)
   })
   
   # Render Leaflet Map
   output$kenya_map <- renderLeaflet({
-    leaflet(data = kenya_shapefile) %>%
+    mapdata <- map_data()
+    
+    # Color palette
+    pal <- colorNumeric(
+      palette = "YlOrRd", 
+      domain = mapdata$value
+    )
+    
+    leaflet(mapdata) %>%
       addTiles() %>%
       addPolygons(
-        fillColor = ~colorQuantile("YlOrRd", filtered_data()$`HIV prevalence`)(filtered_data()$`HIV prevalence`),
-        weight = 1,
+        fillColor = ~pal(value),
+        weight = 2,
         opacity = 1,
         color = "white",
         dashArray = "3",
         fillOpacity = 0.7,
-        highlight = highlightOptions(weight = 5, color = "#666", bringToFront = TRUE),
-        label = ~paste("County:", County, "<br>",
-                       "Population:", Population, "<br>",
-                       "HIV Prevalence:", `HIV prevalence`, "<br>",
-                       "Deficit Workers:", Deficit)
+        highlight = highlightOptions(
+          weight = 5, 
+          color = "#666", 
+          bringToFront = TRUE
+        ),
+        label = ~paste(
+          "District:", ADM1_EN, 
+          "<br>", input$Indicator, ":", round(value, 2)
+        ),
+        # Popup with detailed information
+        popup = ~{
+          district_details <- results_hr_deficits_by_county_and_cadre %>%
+            filter(district == ADM1_EN) %>%
+            select(cadre, hours_needed_per_year, number, 
+                   hours_avaialable_per_year, deficit_in_hours_per_year, 
+                   deficit_in_number_per_year) %>%
+            mutate(across(where(is.numeric), round, 2))
+          
+          # Create HTML table
+          table_html <- paste(
+            "<table border='1' style='width:100%'>",
+            "<tr><th>Cadre</th><th>Hours Needed</th><th>Number</th>",
+            "<th>Hours Available</th><th>Deficit (Hours)</th><th>Deficit (Number)</th></tr>",
+            apply(district_details, 1, function(row) {
+              paste0("<tr>", 
+                     paste0("<td>", row, "</td>", collapse = ""),
+                     "</tr>")
+            }),
+            "</table>"
+          )
+          
+          table_html
+        }
+      ) %>%
+      #Add Legend
+      addLegend(
+        pal = pal,
+        values = ~value,
+        title = input$Indicator,
+        position = "bottomright"
       )
   })
+
   
   # Render Bar Graph
   output$bar_graph <- renderPlot({
