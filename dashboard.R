@@ -149,6 +149,15 @@ ui <- fluidPage(
                       h2("About this Dashboard"),
                       h3("Goal"),
                       p("Sustainable investment for health workforce (How to project recruitment model for healthcare workers based on evidence)/How to optimize the health workforce in kenya towards achieving UHC"),
+                      h3("Background"),
+                      p("Kenya faces critical challenges in its health workforce, including uneven distribution, skill shortages, and limited capacity to address the growing demand for healthcare services. 
+                        These issues are exacerbated by rapid population growth, urbanization, and the increasing prevalence of non-communicable diseases, which place additional strain on the health system. 
+                        According to the World Health Organization (WHO), Kenya has fewer than 2 healthcare workers per 1,000 people, far below the recommended threshold of 4.45 to achieve universal health coverage. 
+                        Furthermore, rural and underserved areas suffer from significant shortages, as most health professionals gravitate toward urban centers, leaving vulnerable populations without adequate care."),
+                      p("A recruitment model tailored to Kenya’s unique needs can address these disparities by creating a systematic approach to attract, deploy, and retain health workers in critical areas. Such a model would ensure equitable distribution of health personnel, integrate workforce planning with national health priorities, and optimize resource allocation. Additionally, it can align with Kenya's Vision 2030 and the Universal Health Coverage (UHC) agenda by improving service delivery and outcomes."),
+                      p("The model could also consider factors such as incentives, training pipelines, and career growth opportunities to reduce turnover and brain drain. A robust recruitment model would ultimately enhance healthcare access and equity, contributing to a stronger health system capable of meeting the country's evolving needs."), 
+                      p("The constitution of Kenya, 2010 recognizes health as a human right,every kenyan has highest standard of care (Kenya, Constitution,2010) The Bottom-up-Economic Transformative Agenda (BETA), health workforce as a major pillar (Government of Kenya,blueprint) The World Health Assembly 78 (WHA), prioritized to achieve SDG 3c Africa Union Agenda 2063, Health worforce development compact for strengthening health systems and reduce mortalities and morbidities (AU,2015)"),
+                      p("Health sysgtems suffer from the tripple burden of epidemiological transitions The need for strengthening health systems for a Fit-For-Purpose health workforce, the health workforce needs vs population health needs Urgent need for recruitment modelling for effective recruitment,retention and distribution (rural-urban and underserved to inform planning,financing (domestic, regional, and global) and projections in absorption and employment and investment case for resource planning. Inform decsion and policy makers in special districbution of health workforce based on the disease burden in the country and epidemiological transitions. Evidence-based approach for healthcare human resource allocation"),
                       h3("Objective"),
                       p("The objective is to: To create a proof-of-concept county-level dashboard, initially for a single disease: HIV, that combines 1) the burden of disease with 2) the healthcare human time-resources required to treat each case, to quantify the total time needed by cadre of healthworker, then compares this need to the current healthcare human time-resources available, to quantify the extent of current unmet needs.")
                )
@@ -160,7 +169,39 @@ ui <- fluidPage(
              fluidRow(
                column(12,
                       h2("Methodology"),
-                      p("Detailed explanation of data collection and analysis methods used in this dashboard.")
+                      h3("Datasets used"),
+                      p("The following datasetst are used in the analysis:"),
+                      tags$ol(
+                        tags$li("Population numbers by county"),
+                        tags$li("Disease burden by county (HIV prevalence used as an exemplar for now)"),
+                        tags$li("Number of health workers in different cadres by county"),
+                        tags$li("Working hours by cadre data"),
+                        tags$li("PLWHIV needing care per county (PLHIV-ART-catchment)"),
+                        tags$li("Activity standards across different cadres (time per patient)"),
+                        tags$li("Integrated Human Resource Information System (iHRIS)")
+                      ),
+                      h3("Analysis"),
+                      p("We used the following workflow in the analysis:"),
+                      tags$ol(
+                        tags$li("We compiled data on HIV burden by county (prevalence x population)"),
+                        tags$li("Split number needing care by HIV disease condition. This was a product of number of PLWHIV needing care per county (PLHIV-ART-catchment) and national proportion in each disease category needing care"),
+                        tags$li("Calculated the expected time spent in each HIV intervention per patient per year. This was the product of professional standard average time per intervention, percent of people in the patient group that would need the intervention and frequency of the required intervention per year"),
+                        tags$li("Combined (2) with (3) to determine total time resources needed per county"),
+                        tags$li("Collated human time resources available by county and cadre. This was a product of available resources (number in each cadre) and working time by cadre"),
+                        tags$li("Compared time resources available (5) vs need (4) to determine unmet needs")
+                      ),
+                      h3("Dashboard development"),
+                      p("We developed this dashboard using", strong("shiny"), "and", strong("shinydashboard"), "R packages. We intend to continue development to add more functionality and results as the expansion of the model continues"),
+                      h3("Priority model extensions"),
+                      p("We have used HIV as an axemplar but the plan is to expand the model in the following ways:"),
+                      tags$ol(
+                        tags$li("Add more diseases with target to cover at least 90% of all disease burden"),
+                        tags$li("Include uncertainity in the model results"),
+                        tags$li("Include disease projections so that the too can be used for future rather than current HRH planning"),
+                        tags$li("Include support activity times. At the moment only time spent on direct patient care is included."),
+                        tags$li("Investment case: From the HRH gap established estimate the resource need for the gap using unit cost for each cadre"),
+                      )
+                      
                )
              )
     ),

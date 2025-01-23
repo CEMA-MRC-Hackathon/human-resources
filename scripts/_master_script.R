@@ -10,7 +10,7 @@ source("./scripts/time_calculations_per cadre.R")
 ## A4) Available resources (number in each cadre) data
 source("./scripts/tidy_available_resources.R")
 ## A5) Working time by cadre data
-source("./scripts/tidy_working_time_by_cadre.R.R")
+source("./scripts/tidy_working_time_by_cadre.R")
 ## A6) # PLWHIV needing care per county (PLHIV-ART-catchment)
 source("./scripts/tidy_plhiv_needing_care_by_county.R")
 ## A7) Calculate national % in each category needing care
