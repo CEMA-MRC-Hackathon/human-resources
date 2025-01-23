@@ -18,3 +18,12 @@ data |>
     geom_bar(stat = "identity", fill = met.brewer("Isfahan2", 5)[5]) +
   theme_bw() +
   labs(x = y, y = "")
+
+data |>
+  pivot_longer(-(district:cadre)) |>
+  filter(name == y) |>
+  ggplot(aes(y = fct_rev(district), x = value, group = cadre, fill = cadre)) +
+  geom_bar(stat = "identity") +
+  theme_bw() +
+  scale_fill_manual(values = cols) +
+  labs(fill = "Cadre of healthworker", y = "", x = y)
