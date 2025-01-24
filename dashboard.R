@@ -170,7 +170,7 @@ ui <- fluidPage(
                column(12,
                       h2("Methodology"),
                       h3("Datasets used"),
-                      p("The following datasetst are used in the analysis:"),
+                      p("The following datasets are used in the analysis:"),
                       tags$ol(
                         tags$li("Population numbers by county"),
                         tags$li("Disease burden by county (HIV prevalence used as an exemplar for now)"),
