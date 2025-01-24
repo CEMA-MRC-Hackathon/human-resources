@@ -183,7 +183,7 @@ ui <- fluidPage(
                       h3("Analysis"),
                       p("We used the following workflow in the analysis:"),
                       tags$ol(
-                        tags$li("We compiled data on HIV burden by county (prevalence x population)"),
+                        tags$li("We compiled data on HIV burden by county (Number needing care)"),
                         tags$li("Split number needing care by HIV disease condition. This was a product of number of PLWHIV needing care per county (PLHIV-ART-catchment) and national proportion in each disease category needing care"),
                         tags$li("Calculated the expected time spent in each HIV intervention per patient per year. This was the product of professional standard average time per intervention, percent of people in the patient group that would need the intervention and frequency of the required intervention per year"),
                         tags$li("Combined (2) with (3) to determine total time resources needed per county"),
