@@ -193,7 +193,7 @@ ui <- fluidPage(
                       h3("Dashboard development"),
                       p("We developed this dashboard using", strong("shiny"), "and", strong("shinydashboard"), "R packages. We intend to continue development to add more functionality and results as the expansion of the model continues"),
                       h3("Priority model extensions"),
-                      p("We have used HIV as an axemplar but the plan is to expand the model in the following ways:"),
+                      p("We have used HIV as an exemplar but the plan is to expand the model in the following ways:"),
                       tags$ol(
                         tags$li("Add more diseases with target to cover at least 90% of all disease burden"),
                         tags$li("Include uncertainity in the model results"),
