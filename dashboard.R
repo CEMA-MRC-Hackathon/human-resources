@@ -50,14 +50,10 @@ ui <- fluidPage(
       }
       .logo-container img {
         height: 50px;
-        width: 300px;
         object-fit: contain;
-        display: block;
-        margin: auto;
       }
       .header-container {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 10px 15px;
         background-color: #ecf0f5;
@@ -67,17 +63,24 @@ ui <- fluidPage(
         font-size: 24px;
         font-weight: bold;
         color: #3c8dbc;
+        margin-left: 10px;
+      }
+      .right-logo {
+        margin-left: auto;
       }
     "))
   ),
   
   # Header with title and logo
   div(class = "header-container",
-      div(class = "title-container",
-          "Kenya Healthcare Dashboard"
-      ),
       div(class = "logo-container",
-          img(src = "CEMA.jpeg", alt = "Logo")
+          img(src = "Hex.png", alt = "Hex Logo")
+      ),
+      div(class = "title-container",
+          "Kenya Human Resource for Health Dashboard"
+      ),
+      div(class = "logo-container right-logo",
+          img(src = "CEMA.jpeg", alt = "CEMA Logo")
       )
   ),
   
