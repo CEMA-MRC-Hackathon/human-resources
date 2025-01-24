@@ -101,7 +101,7 @@ ui <- fluidPage(
                                     choices = c(
                                       "Hours Needed per Year" = "hours_needed_per_year",
                                       "Number of Workers" = "number", 
-                                      "Hours Available per Year" = "hours_avaialable_per_year",
+                                      "Hours Available per Year" = "hours_available_per_year",
                                       "Deficit in Hours per Year" = "deficit_in_hours_per_year",
                                       "Deficit in Number per Year" = "deficit_in_number_per_year"
                                     ),
