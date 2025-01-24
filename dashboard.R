@@ -173,7 +173,6 @@ ui <- fluidPage(
                       p("The following datasets are used in the analysis:"),
                       tags$ol(
                         tags$li("Population numbers by county"),
-                        tags$li("Disease burden by county (HIV prevalence used as an exemplar for now)"),
                         tags$li("Number of health workers in different cadres by county"),
                         tags$li("Working hours by cadre data"),
                         tags$li("PLWHIV needing care per county (PLHIV-ART-catchment)"),
